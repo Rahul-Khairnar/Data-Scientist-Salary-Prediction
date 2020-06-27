@@ -2,6 +2,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+from sklearn.model_selection import train_test_split
+import statsmodels.api as sm
 
 
 df = pd.read_csv("deep_clean_data.csv")
@@ -24,4 +26,15 @@ df_model = df[["Avg_salary","Rating","Size","Type of ownership","Industry","Sect
 
 ## DF WITH DUMMY DATA
 df_dummy = pd.get_dummies(df_model)
-df_dummy.to_csv("Dummy_data.csv", index = False)
+
+## TRAIN, VALIDATE AND TEST
+x = df_dummy.drop('Avg_salary', axis = 1)
+y = df_dummy.Avg_salary.values
+
+X_train,X_test,y_train,y_test = train_test_split(x,y,test_size=0.2,random_state=42)
+
+## OLS MEANS ORDINARY LEAST SQUARES WHICH IS JUST ANOTHER NAME FOR LINEAR REGRESSION`
+
+x_sm = x = sm.add_constant(x)
+model = sm.OLS(y,x_sm)
+print(model.fit().summary())
