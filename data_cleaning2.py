@@ -80,6 +80,13 @@ def ownership(type):
         return type
 df["Type of ownership"] = df["Type of ownership"].apply(ownership)
 
+
+## RESOLVING THE PER HOUR PROBLEM
+df["min_salary"] = df.apply(lambda x: x.min_salary*2 if x.Per_Hour == 1 else x.min_salary, axis = 1)
+df["max_salary"] = df.apply(lambda x: x.max_salary*2 if x.Per_Hour == 1 else x.max_salary, axis = 1)
+
+df["Avg_salary"] = df.apply(lambda x: (x.min_salary+x.max_salary)/2 if x.Per_Hour == 1 else x.Avg_salary, axis = 1)
+
 ## EXPORTING DATA TO CSV
 df.to_csv("deep_clean_data.csv", index = False)
 
