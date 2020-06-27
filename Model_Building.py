@@ -19,8 +19,9 @@ df = pd.read_csv("deep_clean_data.csv")
 ## TEST ENSEMBLES
 
 print(df.columns)
-
+## DF WITH COLUMNS RELEVANT TO THE MODEL BUILDING
 df_model = df[["Avg_salary","Rating","Size","Type of ownership","Industry","Sector","Revenue","No. of Competitors","Per_Hour","Employer_provided","State","Age_of_company","Python","R_Studio","AWS","EXCEL","Job_Titles_Simplified","Title_Seniority","Job_Description_Length"]]
 
-
-
+## DF WITH DUMMY DATA
+df_dummy = pd.get_dummies(df_model)
+df_dummy.to_csv("Dummy_data.csv", index = False)
