@@ -11,6 +11,8 @@ df = pd.read_csv("deep_clean_data.csv")
 #print(df.columns)
 
 df_model = df[["Avg_salary","Rating","Size","Type of ownership","Industry","Sector","Revenue","No. of Competitors","Per_Hour","Employer_provided","State","job_loc","Age_of_company","Python","SPARK","AWS","EXCEL","Job_Titles_Simplified","Title_Seniority","Job_Description_Length"]]
+df_model.to_csv("model_data.csv", index = False)
+
 
 df_dummy = pd.get_dummies(df_model)
 
@@ -76,5 +78,20 @@ from sklearn.metrics import mean_absolute_error
 print(mean_absolute_error(y_test,tpred_lm))
 print(mean_absolute_error(y_test,tpred_lml))
 print(mean_absolute_error(y_test,tpred_rf))
+
+mean_absolute_error(y_test,(tpred_lm+tpred_rf)/2)
+
+import pickle
+pickl = {'model': gs.best_estimator_}
+pickle.dump( pickl, open( 'model_file' + ".p", "wb" ) )
+
+file_name = "model_file.p"
+with open(file_name, 'rb') as pickled:
+    data = pickle.load(pickled)
+    model = data['model']
+
+model.predict(np.array(list(X_test.iloc[1,:])).reshape(1,-1))[0]
+
+list(X_test.iloc[1,:])
 
 
