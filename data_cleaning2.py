@@ -56,7 +56,7 @@ def length(job_title):
     length_title = len(job_title)
     return length_title
 
-df["Job_Description_Length"] = df["Job Description"].apply(length)
+df["Job_Description_Length"] = df["Job Description"].apply(lambda x:len(x))
 
 ## COMPETITOR COUNT
 def comp_count(competitors):
@@ -88,7 +88,7 @@ df["max_salary"] = df.apply(lambda x: x.max_salary*2 if x.Per_Hour == 1 else x.m
 df["Avg_salary"] = df.apply(lambda x: (x.min_salary+x.max_salary)/2 if x.Per_Hour == 1 else x.Avg_salary, axis = 1)
 
 ## EXPORTING DATA TO CSV
-df.to_csv("deep_clean_data.csv", index = False)
+##df.to_csv("deep_clean_data.csv", index = False)
 
 
     
