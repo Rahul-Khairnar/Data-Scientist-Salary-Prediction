@@ -85,8 +85,8 @@ The three different models used were:
 ## Model Performances
 The best performing model out of the three we had chosen was Random Forests. It outperformed the other models in both test and validation datasets.
 
-**Random Forest:** MAE = 11.079229345059012
-**Multiple Linear Regression:** MAE = 19.921946173173083
+**Random Forest:** MAE = 11.079229345059012 | 
+**Multiple Linear Regression:** MAE = 19.921946173173083 | 
 **Lasso Regression:** MAE = 18.94859522551425
 
 ![alt text](https://github.com/Rahul-Khairnar/Data-Scientist-Salary-Prediction/blob/master/Model_performance.PNG "Performances of all Models")
