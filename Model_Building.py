@@ -75,9 +75,10 @@ tpred_lml = lm_l.predict(X_test)
 tpred_rf = gs.best_estimator_.predict(X_test)
 
 from sklearn.metrics import mean_absolute_error
-print(mean_absolute_error(y_test,tpred_lm))
-print(mean_absolute_error(y_test,tpred_lml))
-print(mean_absolute_error(y_test,tpred_rf))
+print("Mean Absolute Errors for various models are")
+print("Lasso Regression: ",mean_absolute_error(y_test,tpred_lm))
+print("Multiple Linear Regression: ",mean_absolute_error(y_test,tpred_lml))
+print("Random Forests",mean_absolute_error(y_test,tpred_rf))
 
 mean_absolute_error(y_test,(tpred_lm+tpred_rf)/2)
 
